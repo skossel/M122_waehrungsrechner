@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Währungsumrechnung</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        tr:hover {
+            background-color: #e9e9e9;
+        }
+
+        td:first-child, th:first-child {
+            width: 20%;
+        }
+
+        td:last-child, th:last-child {
+            width: 30%;
+        }
+    </style>
+</head>
+<body>
+    <h1>Währungsumrechnung</h1>
+    <table>
+        <tr>
+            <th>Betrag</th>
+            <th>Ursprüngliche Währung</th>
+            <th>Zielwährung</th>
+            <th>Umgerechneter Betrag</th>
+            <th>Zeitstempel</th>
+        </tr>
+        <tr>
+            <td>{{ data.old_amount }}</td>
+            <td>{{ data.old_currency }}</td>
+            <td>{{ data.new_currency }}</td>
+            <td>{{ data.new_amount }}</td>
+            <td>{{ data.timestamp }}</td>
+        </tr>
+    </table>
+</body>
+</html>

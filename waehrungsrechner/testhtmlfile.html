@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Währungsumrechner</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 500px;
+            margin: 50px auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        h1 {
+            margin-top: 0;
+        }
+
+        .converter {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .input-group, .output-group {
+            display: flex;
+            align-items: center;
+        }
+
+        .amount {
+            padding: 10px;
+            font-size: 18px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            width: 200px;
+            text-align: right;
+            background-color: #f9f9f9;
+        }
+
+        span {
+            margin-left: 10px;
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .arrow {
+            margin: 0 20px;
+            font-size: 24px;
+        }
+
+        #rate-info {
+            margin-top: 20px;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Währungsumrechner</h1>
+        <div class="converter">
+            <div class="input-group">
+                <div class="amount">5000</div>
+                <span>USD</span>
+            </div>
+            <div class="arrow">&#8594;</div>
+            <div class="output-group">
+                <div id="result" class="amount"></div>
+                <span>EUR</span>
+            </div>
+        </div>
+        <div id="rate-info"></div>
+    </div>
+
+    <script>
+        const resultDiv = document.getElementById('result');
+        const rateInfo = document.getElementById('rate-info');
+
+        const apiKey = 'qTRfOwwc/jXet0zOlGIGvg==f47WreTpyZOG1nM4';
+        const apiUrl = 'https://api.api-ninjas.com/v1/convertcurrency?want=EUR&have=USD&amount=5000';
+
+        async function getExchangeRate() {
+            try {
+                const response = await fetch(apiUrl, {
+                    headers: {
+                        'X-Api-Key': apiKey
+                    }
+                });
+                const data = await response.json();
+                return data.new_amount;
+            } catch (error) {
+                console.log('Fehler beim Abrufen des Wechselkurses:', error);
+            }
+        }
+
+        async function convertCurrency() {
+            const result = await getExchangeRate();
+            resultDiv.textContent = result.toFixed(2);
+            rateInfo.textContent = `1 USD = ${(result / 5000).toFixed(4)} EUR`;
+        }
+
+        convertCurrency();
+    </script>
+</body>
+</html>
