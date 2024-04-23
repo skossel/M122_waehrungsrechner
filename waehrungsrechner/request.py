@@ -1,12 +1,8 @@
 import requests
-import json
-
-
-api_url = 'https://api.api-ninjas.com/v1/convertcurrency?want=CHF&have=GBP&amount=1000'
-api_key = 'qTRfOwwc/jXet0zOlGIGvg==f47WreTpyZOG1nM4'
+from config import API_URL, API_KEY
 
 def getDataOfApiRequest():
-    response = requests.get(api_url, headers={'X-Api-Key': api_key})
+    response = requests.get(API_URL, headers={'X-Api-Key': API_KEY})
 
     if response.status_code == requests.codes.ok:
         data = response.json()
