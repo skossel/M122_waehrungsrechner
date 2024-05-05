@@ -10,7 +10,7 @@ def api_request_thread():
     while True:
         data = getDataOfApiRequest()
         print(data)
-        time.sleep(2)
+        time.sleep(10)
 
 @app.route('/')
 def index():
